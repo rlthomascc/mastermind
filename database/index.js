@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/tattooAssistant/Admin');
+mongoose.connect('mongodb://localhost/mastermindGroup');
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -7,24 +7,18 @@ db.once('open', function() {
     console.log('MongoDB has connected');
 });
 
-
-let adminSchema = ({
+let loginSchema = ({
     username: String,
-    fullName: {type: String, unique: true},
-    email: {type: String, unique: true},
-    title: String,
-    password: String
+    password: String,
 });
 
-let Admin = mongoose.model('Admin', adminSchema)
+let Login = mongoose.model('Login', loginSchema)
 
 
 function save(e) {
-    let obj = new Admin({
+    console.log(e, 'SAVE FUNC')
+    let obj = new Login({
         username: e.username,
-        fullName: e.fullName,
-        email: e.email,
-        title: e.title,
         password: e.password
 
     });
@@ -34,5 +28,5 @@ function save(e) {
 
 
 
-const funcs = {save, Admin}
+const funcs = {save, Login}
 module.exports = funcs;

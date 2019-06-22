@@ -1,10 +1,23 @@
 import React from 'react';
+import axios from 'axios';
 
 
 const Login = (props) => {
 
-    let handleSubmit = (e) => {
-        console.log(e.target.username.value, e.target.password.value)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const user = e.target.username.value;
+        const pass = e.target.password.value;
+        axios.post('/login', {user, pass})
+        .then((data) => {
+            if (data.data.success === true) {
+                console.log(data.data.message)
+            } 
+            if (data.data.success === false) {
+                alert(data.data.message)
+            }
+        })
+        .catch((err) => console.log(err));
     }
 
     return (
