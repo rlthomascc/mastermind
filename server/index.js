@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const admin = require('../database/admin');
+const db = require('../database/index');
 
 let app = express();
 
@@ -8,29 +8,32 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.post('/newClient', function(req, res) {
-  const e = req.body
-  newClient.save(e)
-  res.send('Data Saving');
-});
+app.post('/login', function(req, res) {
+  db.Login.find({username: req.body.user}).exec((err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    if (data.length < 1) {
+      res.send({
+        success: false,
+        message: 'Account does not exist'
+      })
+    } else if (req.body.pass === data[0]._doc.password) {
+      res.send({
+        success: true,
+        message: 'Valid sign in',
+        token: (data[0]._doc._id).toString()
+      })
+    } else {
+      res.send({
+        success: false,
+        message: 'Password Invalid'
+      })
+    }
 
-app.post('/admin', function(req, res){
-  const e = req.body
-  admin.save(e);
-  res.send('Data Saving');
-});
-
-app.get('/admin', function(req, res) {
-  admin.Admin.find({}).distinct('fullName').exec(function(err, users) {
-    res.send(users);
-  });
-});
-
-app.get('/clients', function(req, res) {
-  newClient.Client.find({}).exec(function(err, clients){
-    res.send(clients);
   })
-})
+});
+
 
 let port = 3000;
 
