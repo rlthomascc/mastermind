@@ -1,20 +1,44 @@
 import React, { Component } from 'react';
 import Modal from 'react-awesome-modal';
+import axios from 'axios';
+import { Redirect, Route, HashRouter, Link } from 'react-router-dom';
 import Routes from './Routes';
-import $ from 'jquery';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            view: 'home'
+            isLoggedIn: false,
+            token: '',
         }
     }
 
+    toggleLog(e) {
+        this.setState({
+            isLoggedIn: true
+        })
+    }
+
+    logout(e) {
+        this.setState({
+            isLoggedIn: false
+        })
+    }
+
+    setToken(e) {
+        this.setState({
+            token: e
+        })
+    }
+
+    renderView() {
+        const {isLoggedIn, token} = this.state;
+        return <Routes isLoggedIn={isLoggedIn} logout={this.logout.bind(this)} token={token} toggleLog={this.toggleLog.bind(this)} setToken={this.setToken.bind(this)}/>
+    }
 
     render() {
         return (
-            <Routes />
+            this.renderView()
         );
     };
 };
