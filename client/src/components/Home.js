@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { Redirect, Route, HashRouter, Link } from 'react-router-dom';
+const ls = require('../../utils/storage');
 
 class Home extends Component {
     constructor(props) {
@@ -8,25 +9,26 @@ class Home extends Component {
     }
 
     componentWillMount() {
-        axios.get('/session', {token: this.props.token})
-        .then((data) => {
-            if (data.data.success === false) {
-                console.log(data, 'DATA BACK')
-                console.log(this.props, 'props')
-                this.props.logout();
-            }
-        })
-        .catch((err) => console.log(err));
+        const token = ls.getFromStorage('token')
+        if (token.length > 1) {
+            axios.get('/session', {token: token})
+            .then((data) => {
+                if (data.data.success === false) {
+                    this.props.logout();
+                }
+            })
+            .catch((err) => console.log(err));
+        }
     }
 
 
     render() { 
         const {isLoggedIn} = this.props
-        console.log(isLoggedIn, 'isloggedin', this.props, 'props')
+        console.log(ls.getFromStorage('token'), 'TOKEN')
         if (isLoggedIn === true) {
             return (
-            <div>
-                <h1>Hello World</h1>
+            <div className="container">
+                <h3>Welcome to The Home Screen!</h3>
             </div>
         );
     }
