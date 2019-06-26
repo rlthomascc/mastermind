@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Navbar from './Navbar';
 import axios from 'axios';
 import { Redirect, Route, HashRouter, Link } from 'react-router-dom';
 const ls = require('../../utils/storage');
@@ -27,8 +28,8 @@ class Home extends Component {
         console.log(ls.getFromStorage('token'), 'TOKEN')
         if (isLoggedIn === true) {
             return (
-            <div className="container">
-                <h3>Welcome to The Home Screen!</h3>
+            <div>
+                <Navbar />
             </div>
         );
     }
