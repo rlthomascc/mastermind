@@ -1,40 +1,48 @@
-import React, {Component} from 'react';
+/* eslint-disable no-useless-constructor */
+/* eslint-disable react/jsx-filename-extension */
+import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect, Route, HashRouter, Link } from 'react-router-dom';
+import {
+  Redirect, Route, HashRouter, Link,
+} from 'react-router-dom';
+import Navbar from './Navbar';
+import Homepage from './Homepage';
+
 const ls = require('../../utils/storage');
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    componentWillMount() {
-        const token = ls.getFromStorage('token')
-        if (token.length > 1) {
-            axios.get('/session', {token: token})
-            .then((data) => {
-                if (data.data.success === false) {
-                    this.props.logout();
-                }
-            })
-            .catch((err) => console.log(err));
-        }
+  componentWillMount() {
+    const token = ls.getFromStorage('token');
+    if (token.length > 1) {
+      axios.get('/session', { token })
+        .then((data) => {
+          if (data.data.success === false) {
+            this.props.logout();
+          }
+        })
+        .catch(err => console.log(err));
     }
+  }
 
 
-    render() { 
-        const {isLoggedIn} = this.props
-        console.log(ls.getFromStorage('token'), 'TOKEN')
-        if (isLoggedIn === true) {
-            return (
-            <div className="container">
-                <h3>Welcome to The Home Screen!</h3>
-            </div>
-        );
+  render() {
+    const { isLoggedIn } = this.props;
+    console.log(ls.getFromStorage('token'), 'TOKEN');
+    if (isLoggedIn === true) {
+      return (
+        <div>
+          <Navbar active={this.props.active} changeActive={this.props.changeActive}/>
+          <Homepage />
+        </div>
+      );
     }
-    return <Redirect to="/" />
-    }
+    return <Redirect to="/" />;
+  }
 }
- 
 
-export default Home
+
+export default Home;

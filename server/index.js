@@ -48,7 +48,7 @@ app.get('/session', (req, res) => {
         message: 'Invalid Token'
       })
     } else if (data[0]._doc.isDeleted === false) {
-      if (data[0]._doc.timeStamp < (new Date().getTime() + (1 * 2 * 60 * 60 * 1000))) {
+      if (data[0]._doc.timeStamp) {
         res.send({
           success: true,
           message: 'Valid Token',
