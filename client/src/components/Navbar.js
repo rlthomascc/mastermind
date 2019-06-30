@@ -19,8 +19,8 @@ const Navbar = props => (
           </a>
         </li>
 
-        <li className={props.active === 'about' ? 'nav-item active' : 'nav-item'}>
-          <a className="nav-link" href="#/about">About</a>
+        <li className="nav-item">
+          <a className="nav-link" href="#/accountability">Accountability</a>
         </li>
 
         <li className="nav-item dropdown">
