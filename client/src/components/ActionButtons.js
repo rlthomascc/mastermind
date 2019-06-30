@@ -88,7 +88,7 @@ class ActionNav extends Component {
         </div>
         <br />
         <div className="actionIndividuals">
-          <a className="btn btn-success" href="#/home" onClick={() => this.opengoal('New goal')}>
+          <a className="btn btn-success text-light" onClick={() => this.opengoal('New goal')}>
             <FaBullseye id="icon" size={25} id="icon" className="text-light" />
             {' '}
               New Goal
@@ -96,7 +96,7 @@ class ActionNav extends Component {
         </div>
         <br />
         <div className="actionIndividuals">
-          <a className="btn btn-info text-light" href="#/home" onClick={() => this.openToDo('ToDo')}>
+          <a className="btn btn-info text-light" onClick={() => this.openToDo('ToDo')}>
             <FaListOl id="icon" size={25} id="icon" className="text-light" />
             {' '}
               New To Do
