@@ -10,4 +10,48 @@ body {
     border-radius: 30px;
 }
 
+.about {
+    padding: 40px 40px 40px 40px;
+    margin: auto;
+    margin-top: 100px;
+    width: 50%;
+    border: 1px solid #D3D3D3;
+    border-radius: 30px;
+}
 
+.chartjs {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px 30px 30px 30px;
+    border: 1px solid #D3D3D3;
+    border-radius: 20px;
+}
+
+.actionButtons {
+    margin-top: 50px;
+    padding: 20px 20px 40px 20px;
+    border-bottom: 1px solid #D3D3D3;
+}
+
+.actionIndividuals {
+    margin-left: 50px; 
+    margin-right: 50px;
+}
+
+.modalForm {
+    padding: 30px 30px 30px 30px;
+}
+
+#Modal {
+    padding: 30px 30px 30px 30px;
+    text-align: center;
+    width: 600px;
+}
+
+.table {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

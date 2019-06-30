@@ -2,13 +2,9 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 
-const Navbar = (props) => {
-
-
-
-  return (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-  {console.log(props.active, 'active', props)}
+const Navbar = props => (
+  <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="topNav">
+    {console.log(props.active, 'active', props)}
     <a className="navbar-brand" href="#">Navbar</a>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
@@ -16,7 +12,7 @@ const Navbar = (props) => {
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav">
 
-        <li className='nav-item'>
+        <li className="nav-item">
           <a className="nav-link" href="#/home">
           Dashboard
             {' '}
@@ -24,7 +20,7 @@ const Navbar = (props) => {
         </li>
 
         <li className={props.active === 'about' ? 'nav-item active' : 'nav-item'}>
-          <a className='nav-link' href="#/about">About</a>
+          <a className="nav-link" href="#/about">About</a>
         </li>
 
         <li className="nav-item dropdown">
@@ -49,11 +45,13 @@ const Navbar = (props) => {
           </div>
         </li>
 
+        <li className={props.active === 'about' ? 'nav-item active' : 'nav-item'}>
+          <a className="nav-link" href="#/ideas">Ideas</a>
+        </li>
+
       </ul>
     </div>
   </nav>
-  )
-
-};
+);
 
 export default Navbar;
