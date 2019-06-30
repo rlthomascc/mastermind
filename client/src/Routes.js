@@ -9,6 +9,7 @@ import {
 import Login from './components/Login';
 import Home from './components/Home';
 import Fallback from './components/Fallback';
+import GoalOverview from './components/GoalOverview';
 import About from './components/About';
 
 
@@ -25,7 +26,7 @@ class Routes extends Component {
             path="/"
             exact
             render={props => (
-              <Login isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken}  />
+              <Login isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
             )}
           />
           <Route
@@ -42,6 +43,14 @@ class Routes extends Component {
             strict
             render={props => (
               <About isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
+            )}
+          />
+          <Route
+            path="/goalsOverview"
+            exact
+            strict
+            render={props => (
+              <GoalOverview isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
             )}
           />
         </div>

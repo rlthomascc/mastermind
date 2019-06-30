@@ -35,8 +35,7 @@ class Home extends Component {
     if (isLoggedIn === true) {
       return (
         <div>
-          <Navbar active={this.props.active} changeActive={this.props.changeActive}/>
-          <Homepage />
+          <Homepage active={this.props.active} changeActive={this.props.changeActive} />
         </div>
       );
     }

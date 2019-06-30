@@ -29,7 +29,7 @@ class DashboardChart extends Component {
     };
 
     return (
-      <div>
+      <div className="chartjs">
         <Line
           data={sampleData}
           height={350}
