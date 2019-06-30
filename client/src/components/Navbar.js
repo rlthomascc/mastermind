@@ -25,7 +25,6 @@ const Navbar = props => (
           Goals
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a className="dropdown-item" href="#/goalsOverview">Overview</a>
             <a className="dropdown-item" href="#/randyGoals">Randy's Goals</a>
             <a className="dropdown-item" href="#/donGoals">Don's Goals</a>
           </div>
@@ -36,7 +35,6 @@ const Navbar = props => (
           Users
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a className="dropdown-item" href="#/userOverview">Overview</a>
             <a className="dropdown-item" href="#/randyThomas">Randy Thomas</a>
             <a className="dropdown-item" href="#/donWright">Don Wright</a>
           </div>
