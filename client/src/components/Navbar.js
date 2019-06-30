@@ -19,9 +19,6 @@ const Navbar = props => (
           </a>
         </li>
 
-        <li className={props.active === 'about' ? 'nav-item active' : 'nav-item'}>
-          <a className="nav-link" href="#/about">About</a>
-        </li>
 
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#/goals" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,8 +42,12 @@ const Navbar = props => (
           </div>
         </li>
 
+        <li className="nav-item">
+          <a className="nav-link" href="#/accountability">Accountability</a>
+        </li>
+
         <li className={props.active === 'about' ? 'nav-item active' : 'nav-item'}>
-          <a className="nav-link" href="#/ideas">Ideas</a>
+          <a className="nav-link" href="#/ideas">Ideas/Forum</a>
         </li>
 
       </ul>

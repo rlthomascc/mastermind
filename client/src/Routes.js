@@ -10,7 +10,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Fallback from './components/Fallback';
 import GoalOverview from './components/GoalOverview';
-import About from './components/About';
+import Accountability from './components/Accountability';
 
 
 class Routes extends Component {
@@ -38,11 +38,11 @@ class Routes extends Component {
             )}
           />
           <Route
-            path="/about"
+            path="/accountability"
             exact
             strict
             render={props => (
-              <About isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
+              <Accountability isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
             )}
           />
           <Route
