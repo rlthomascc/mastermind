@@ -32,11 +32,11 @@ const ForumForm = () => {
         </div>
         <div className="form-group">
           <label>Title</label>
-          <input id="title" type="text" className="form-control" placeholder="Enter to do here" />
+          <input id="title" type="text" className="form-control" placeholder="Enter title here" />
         </div>
         <div className="form-group">
           <label>Description</label>
-          <textarea id="description" type="text" className="form-control" placeholder="Enter to do here" />
+          <textarea id="description" type="text" className="form-control" placeholder="Enter description here" />
         </div>
         <div className="form-group">
           <label>Date</label>

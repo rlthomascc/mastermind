@@ -84,6 +84,13 @@ app.get('/session', (req, res) => {
 
 app.post('/forum', (req, res) => {
   console.log(req.body.user, req.body.title, req.body.description, req.body.date);
+  db.forumSave({
+    username: req.body.user,
+    title: req.body.title,
+    description: req.body.description,
+    date: req.body.date,
+  });
+  console.log('Saved to DB');
 });
 
 app.get('/forum', (req, res) => {
@@ -91,7 +98,14 @@ app.get('/forum', (req, res) => {
 });
 
 app.post('/tasks', (req, res) => {
-  console.log(req.body.user, req.body.task, req.body.often, req.body.other, req.body.date);
+  db.tasksSave({
+    username: req.body.user,
+    task: req.body.task,
+    often: req.body.often,
+    other: req.body.other,
+    date: req.body.date,
+  });
+  console.log('Saved to DB');
 });
 
 app.get('/tasks', (req, res) => {
@@ -99,7 +113,12 @@ app.get('/tasks', (req, res) => {
 });
 
 app.post('/todo', (req, res) => {
-  console.log(req.body.user, req.body.todo, req.body.date);
+  db.todoSave({
+    username: req.body.user,
+    todo: req.body.todo,
+    date: req.body.date,
+  });
+  console.log('Saved to DB');
 });
 
 app.get('/todo', (req, res) => {
@@ -107,7 +126,12 @@ app.get('/todo', (req, res) => {
 });
 
 app.post('/savings', (req, res) => {
-  console.log(req.body.user, req.body.amount, req.body.date);
+  db.savingsSave({
+    username: req.body.user,
+    amount: req.body.amount,
+    date: req.body.date,
+  });
+  console.log('Saved to DB');
 });
 
 app.post('/savings', (req, res) => {
@@ -116,6 +140,13 @@ app.post('/savings', (req, res) => {
 
 app.post('/goal', (req, res) => {
   console.log(req.body.user, req.body.goal, req.body.steps, req.body.date);
+  db.goalSave({
+    username: req.body.user,
+    goal: req.body.goal,
+    steps: req.body.steps,
+    date: req.body.date,
+  });
+  console.log('Saved to DB');
 });
 
 app.get('/goal', (req, res) => {

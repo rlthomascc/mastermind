@@ -55,6 +55,7 @@ class Accountability extends Component {
               <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
+              <th scope="col" />
             </tr>
           </thead>
           <tbody>
@@ -62,16 +63,40 @@ class Accountability extends Component {
               <th scope="row">1</th>
               <td>Mark</td>
               <td>Otto</td>
+              <td>
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>Jacob</td>
               <td>Thornton</td>
+              <td>
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>Larry</td>
               <td>the Bird</td>
+              <td>
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
           </tbody>
         </table>

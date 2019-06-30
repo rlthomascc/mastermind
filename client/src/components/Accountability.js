@@ -51,7 +51,7 @@ class Accountability extends Component {
     return (
       <div>
         <div className="taskButton text-center">
-          <a className="btn btn-success" href="#/accountability" onClick={() => this.opentask('New task')}>
+          <a className="btn btn-info text-light" href="#/accountability" onClick={() => this.opentask('New task')}>
             <FaTasks id="icon" size={25} id="icon" className="text-light" />
             {' '}
               New Task
@@ -82,6 +82,7 @@ class Accountability extends Component {
               <th scope="col">Task</th>
               <th scope="col">Reminder Term</th>
               <th scope="col">Date Created</th>
+              <th scope="col" />
             </tr>
           </thead>
           <tbody>
@@ -90,18 +91,51 @@ class Accountability extends Component {
               <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
+              <td>
+                <button className="btn btn-sm btn-success text-light">Complete</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>Jacob</td>
               <td>Thornton</td>
               <td>@fat</td>
+              <td>
+                <button className="btn btn-sm btn-success text-light">Complete</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>Larry</td>
               <td>the Bird</td>
               <td>@twitter</td>
+              <td>
+                <button className="btn btn-sm btn-success text-light">Complete</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -120,6 +154,7 @@ class Accountability extends Component {
               <th scope="col">Task</th>
               <th scope="col">Reminder Term</th>
               <th scope="col">Date Created</th>
+              <th scope="col" />
             </tr>
           </thead>
           <tbody>
@@ -128,18 +163,51 @@ class Accountability extends Component {
               <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
+              <td>
+                <button className="btn btn-sm btn-success text-light">Complete</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>Jacob</td>
               <td>Thornton</td>
               <td>@fat</td>
+              <td>
+                <button className="btn btn-sm btn-success text-light">Complete</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>Larry</td>
               <td>the Bird</td>
               <td>@twitter</td>
+              <td>
+                <button className="btn btn-sm btn-success text-light">Complete</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-primary text-light">Edit</button>
+                {' '}
+                {' '}
+                <button className="btn btn-sm btn-danger text-light">Delete</button>
+                {' '}
+                {' '}
+              </td>
             </tr>
           </tbody>
         </table>
