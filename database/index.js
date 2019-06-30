@@ -1,54 +1,169 @@
 const mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost/mastermindGroup');
 
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log('MongoDB has connected');
+db.once('open', () => {
+  console.log('MongoDB has connected');
 });
 
-//schemas
-let loginSchema = ({
-    username: String,
-    password: String,
+// schemas
+const loginSchema = ({
+  username: String,
+  password: String,
 });
 
-let sessionSchema = ({
-    timeStamp: { type: Date, default: new Date().getTime() },
-    isDeleted: { type: Boolean, default: false },
-    username: String,
-    userId: String,
-})
+const sessionSchema = ({
+  timeStamp: { type: Date, default: new Date().getTime() },
+  isDeleted: { type: Boolean, default: false },
+  username: String,
+  userId: String,
+});
+
+const forumSchema = ({
+  username: String,
+  title: String,
+  description: String,
+  date: { type: Date, default: new Date().getTime() },
+});
+
+const tasksSchema = ({
+  username: String,
+  task: String,
+  often: String,
+  other: { type: String, default: null },
+  date: { type: Date, default: new Date().getTime() },
+  isCompleted: { type: Boolean, default: false },
+});
+
+const todoSchema = ({
+  username: String,
+  todo: String,
+  date: { type: Date, default: new Date().getTime() },
+  isCompleted: { type: Boolean, default: false },
+
+});
+
+const savingsSchema = ({
+  username: String,
+  amount: Number,
+  Date: { type: Date, default: new Date().getTime() },
+});
+
+const goalSchema = ({
+  username: String,
+  goal: String,
+  steps: String,
+  date: { type: Date, default: new Date().getTime() },
+  isCompleted: { type: Boolean, default: false },
+});
+
+// models
+const Login = mongoose.model('Login', loginSchema);
+const Session = mongoose.model('Session', sessionSchema);
+const Forum = mongoose.model('Forum', forumSchema);
+const Tasks = mongoose.model('Tasks', tasksSchema);
+const Todo = mongoose.model('Todo', todoSchema);
+const Savings = mongoose.model('Savings', savingsSchema);
+const Goal = mongoose.model('Goal', goalSchema);
 
 
-//models
-let Login = mongoose.model('Login', loginSchema)
-let Session = mongoose.model('Session', sessionSchema)
-
-
-//save functions
+// save functions
 function save(e) {
-    console.log(e, 'SAVE FUNC')
-    let obj = new Login({
-        username: e.username,
-        password: e.password
+  console.log(e, 'SAVE FUNC');
+  const obj = new Login({
+    username: e.username,
+    password: e.password,
 
-    });
-    obj.save();
-    console.log('Data saved to MongoDB Database');
-};
-
-function saveSession(e) {
-    console.log(e, 'SESSION SAVE')
-    let obj = new Session({
-        username: e.username,
-        userId: e.token
-    })
-    obj.save();
-    console.log('Data saved to MongoDB Database')
+  });
+  obj.save();
+  console.log('Data saved to MongoDB Database');
 }
 
+function saveSession(e) {
+  console.log(e, 'SESSION SAVE');
+  const obj = new Session({
+    username: e.username,
+    userId: e.token,
+  });
+  obj.save();
+  console.log('Data saved to MongoDB Database');
+}
 
+function forumSave(e) {
+  console.log(e, 'FORUM SAVE');
+  const obj = new Forum({
+    username: e.username,
+    title: e.title,
+    description: e.description,
+    date: e.date,
+  });
+  obj.save();
+  console.log('Data saved to MongoDB Database');
+}
 
-const funcs = {save, Login, saveSession, Session}
+function tasksSave(e) {
+  console.log(e, 'TASKS SAVE');
+  const obj = new Tasks({
+    username: e.username,
+    task: e.task,
+    often: e.often,
+    other: e.other,
+    date: e.date,
+  });
+  obj.save();
+  console.log('Data Saved to MongoDB Database');
+}
+
+function todoSave(e) {
+  console.log(e, 'TODO SAVE');
+  const obj = new Todo({
+    username: e.username,
+    todo: e.todo,
+    date: e.date,
+  });
+  obj.save();
+  console.log('Data Saved to MongoDB Database');
+}
+
+function savingsSave(e) {
+  console.log(e, 'SAVINGS SAVE');
+  const obj = new Savings({
+    username: e.username,
+    amount: e.amount,
+    date: e.date,
+  });
+  obj.save();
+  console.log('Data Saved to MongoDB Database');
+}
+
+function goalSave(e) {
+  const obj = new Goal({
+    username: e.username,
+    goal: e.goal,
+    steps: e.steps,
+    date: e.date,
+  });
+  obj.save();
+  console.log('Data Saved to MongoDB Databse');
+}
+
+const funcs = {
+  save,
+  Login,
+  saveSession,
+  Session,
+  Forum,
+  forumSave,
+  Tasks,
+  tasksSave,
+  Todo,
+  todoSave,
+  Savings,
+  savingsSave,
+  Goal,
+  goalSave,
+
+};
 module.exports = funcs;

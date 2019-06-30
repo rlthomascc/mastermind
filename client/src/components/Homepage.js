@@ -6,9 +6,9 @@ import ActionButtons from './ActionButtons';
 
 
 const Homepage = (props) => {
-  const randyTable = () => (
+  const randyTodoTable = () => (
     <div className="table">
-      <p className="font-weight-bold text-center text-success">Randy Thomas</p>
+      <p className="font-weight-bold text-center text-success">Randy Thomas TODOS</p>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -42,9 +42,9 @@ const Homepage = (props) => {
     </div>
   );
 
-  const donTable = () => (
+  const donTodoTable = () => (
     <div className="table">
-      <p className="font-weight-bold text-center text-success">Don Wright</p>
+      <p className="font-weight-bold text-center text-success">Don Wright TODOS</p>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -78,20 +78,99 @@ const Homepage = (props) => {
     </div>
   );
 
-  const flexTables = () => (
+  const donGoalsTable = () => (
+    <div className="table">
+      <p className="font-weight-bold text-center text-success">Don Wright Goals</p>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+
+  const randyGoalsTable = () => (
+    <div className="table">
+      <p className="font-weight-bold text-center text-success">Randy Thomas Goals</p>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+
+  const flexTodoTables = () => (
     <div className="d-flex flex-row">
-      {randyTable()}
-      {donTable()}
+      {randyTodoTable()}
+      {donTodoTable()}
+    </div>
+  );
+
+  const flexGoalTables = () => (
+    <div className="d-flex flex-row">
+      {randyGoalsTable()}
+      {donGoalsTable()}
     </div>
   );
 
   return (
-
     <div>
       <Navbar active={props.active} changeActive={props.changeActive} />
       <ActionButtons />
       <DashboardChart />
-      {flexTables()}
+      {flexTodoTables()}
+      {flexGoalTables()}
     </div>
   );
 };
