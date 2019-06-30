@@ -5,15 +5,16 @@ const axios = require('axios');
 
 const ForumForm = () => {
   const handleSubmit = (e) => {
-    e.preventDefault;
-    console.log('you clicked me');
+    e.preventDefault();
     axios.post('/forum', {
       user: e.target.user.value,
       title: e.target.title.value,
       description: e.target.description.value,
       date: e.target.date.value,
     })
-      .then(data => console.log(data, 'data'))
+      .then((data) => {
+        console.log(data, 'data');
+      })
       .catch(err => console.log(err));
   };
 
