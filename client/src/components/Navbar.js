@@ -2,10 +2,12 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 
+
 const Navbar = props => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="topNav">
     {console.log(props.active, 'active', props)}
-    <a className="navbar-brand" href="#">Navbar</a>
+    {/* <a className="navbar-brand" href="#">Scalevate</a> */}
+    <img src="photos/logoWhite.png" width="70px" />
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
