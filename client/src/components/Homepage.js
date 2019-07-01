@@ -6,6 +6,24 @@ import ActionButtons from './ActionButtons';
 
 
 const Homepage = (props) => {
+  const randyTodo = [];
+  const donTodo = [];
+  const randyGoal = [];
+  const donGoal = [];
+  props.todo.map((elem, i) => {
+    if (elem.username === 'Don Wright' && elem.isCompleted === false) {
+      donTodo.push(elem);
+    } else if (elem.username === 'Randy Thomas' && elem.isCompleted === false) {
+      randyTodo.push(elem);
+    }
+  });
+  props.goals.map((elem, i) => {
+    if (elem.username === 'Don Wright' && elem.isCompleted === false) {
+      donGoal.push(elem);
+    } else if (elem.username === 'Randy Thomas' && elem.isCompleted === false) {
+      randyGoal.push(elem);
+    }
+  });
   const randyTodoTable = () => (
     <div className="table">
       <p className="font-weight-bold text-center text-success">Randy Thomas TODOS</p>
@@ -13,30 +31,18 @@ const Homepage = (props) => {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">User</th>
+            <th scope="col">Todo</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {randyTodo.map((elem, i) => (
+            <tr key={i++}>
+              <th scope="row">{i++}</th>
+              <td>{elem.username}</td>
+              <td>{elem.todo}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -49,30 +55,18 @@ const Homepage = (props) => {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">User</th>
+            <th scope="col">Todo</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {donTodo.map((elem, i) => (
+            <tr key={i++}>
+              <th scope="row">{i++}</th>
+              <td>{elem.username}</td>
+              <td>{elem.todo}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -91,24 +85,14 @@ const Homepage = (props) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {donGoal.map((elem, i) => (
+            <tr key={i++}>
+              <td>{i++}</td>
+              <td>{elem.username}</td>
+              <td>{elem.goal}</td>
+              <td>{elem.steps}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -127,24 +111,14 @@ const Homepage = (props) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {randyGoal.map((elem, i) => (
+            <tr key={i++}>
+              <td>{i++}</td>
+              <td>{elem.username}</td>
+              <td>{elem.goal}</td>
+              <td>{elem.steps}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

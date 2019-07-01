@@ -9,6 +9,8 @@ import Modal from 'react-awesome-modal';
 import Navbar from './Navbar';
 import ForumForm from '../modals/ForumForm';
 
+const axios = require('axios');
+
 class Accountability extends Component {
   constructor(props) {
     super(props);
@@ -16,8 +18,19 @@ class Accountability extends Component {
       active: 'Home',
       taskModal: false,
       forumForm: [],
-      savings: [],
+      // savings: [],
+      forums: [],
     };
+  }
+
+  componentDidMount() {
+    axios.get('/forum')
+      .then((data) => {
+        this.setState({
+          forums: data.data,
+        });
+      })
+      .catch(err => console.log(err, 'err'));
   }
 
   setActive(e) {
@@ -47,57 +60,36 @@ class Accountability extends Component {
 
 
   forums() {
+    const { forums } = this.state;
     return (
       <div>
         <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col">#</th>
+              <th scope="col">User</th>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
               <th scope="col" />
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>
-                <button className="btn btn-sm btn-primary text-light">Edit</button>
-                {' '}
-                {' '}
-                <button className="btn btn-sm btn-danger text-light">Delete</button>
-                {' '}
-                {' '}
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>
-                <button className="btn btn-sm btn-primary text-light">Edit</button>
-                {' '}
-                {' '}
-                <button className="btn btn-sm btn-danger text-light">Delete</button>
-                {' '}
-                {' '}
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>
-                <button className="btn btn-sm btn-primary text-light">Edit</button>
-                {' '}
-                {' '}
-                <button className="btn btn-sm btn-danger text-light">Delete</button>
-                {' '}
-                {' '}
-              </td>
-            </tr>
+            {forums.map((elem, i) => (
+              <tr key={i++}>
+                <td>{i++}</td>
+                <td>{elem.username}</td>
+                <td>{elem.title}</td>
+                <td>{elem.description}</td>
+                <td>
+                  <button className="btn btn-sm btn-primary text-light">Edit</button>
+                  {' '}
+                  {' '}
+                  <button className="btn btn-sm btn-danger text-light">Delete</button>
+                  {' '}
+                  {' '}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
