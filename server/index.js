@@ -94,7 +94,12 @@ app.post('/forum', (req, res) => {
 });
 
 app.get('/forum', (req, res) => {
-
+  db.Forum.find().exec((err, data) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(data);
+  });
 });
 
 app.post('/tasks', (req, res) => {
@@ -109,7 +114,12 @@ app.post('/tasks', (req, res) => {
 });
 
 app.get('/tasks', (req, res) => {
-
+  db.Tasks.find().exec((err, data) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(data);
+  });
 });
 
 app.post('/todo', (req, res) => {
@@ -122,7 +132,12 @@ app.post('/todo', (req, res) => {
 });
 
 app.get('/todo', (req, res) => {
-
+  db.Todo.find().exec((err, data) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(data);
+  });
 });
 
 app.post('/savings', (req, res) => {
@@ -134,8 +149,13 @@ app.post('/savings', (req, res) => {
   console.log('Saved to DB');
 });
 
-app.post('/savings', (req, res) => {
-
+app.get('/savings', (req, res) => {
+  db.Savings.find().exec((err, data) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(data);
+  });
 });
 
 app.post('/goal', (req, res) => {
@@ -150,7 +170,12 @@ app.post('/goal', (req, res) => {
 });
 
 app.get('/goal', (req, res) => {
-
+  db.Goal.find().exec((err, data) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(data);
+  });
 });
 
 
