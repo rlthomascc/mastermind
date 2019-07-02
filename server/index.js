@@ -125,12 +125,44 @@ app.post('/tasks', (req, res) => {
 });
 
 app.get('/tasks', (req, res) => {
-  db.Tasks.find().exec((err, data) => {
+  db.Tasks.find().sort({ date: -1 }).exec((err, data) => {
     if (err) {
       res.send(err);
     }
     res.send(data);
   });
+});
+
+app.patch('/tasks', (req, res) => {
+  console.log(req.body);
+  if (req.body.isCompleted === false) {
+    db.Tasks.findOneAndUpdate({
+      _id: req.body.id,
+    }, {
+      $set: {
+        isCompleted: true,
+      },
+    }, null, (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.send('Successfully changed');
+    });
+  }
+  if (req.body.isCompleted === true) {
+    db.Tasks.findOneAndUpdate({
+      _id: req.body.id,
+    }, {
+      $set: {
+        isCompleted: false,
+      },
+    }, null, (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.send('Successfully changed');
+    });
+  }
 });
 
 app.post('/taskDelete', (req, res) => {
