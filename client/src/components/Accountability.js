@@ -66,6 +66,16 @@ class Accountability extends Component {
       .catch(err => console.log(err));
   }
 
+  markComplete(e) {
+    console.log(e);
+    axios.patch('/tasks', { id: e.id, isCompleted: e.isCompleted })
+      .then((data) => {
+        location.reload();
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+  }
+
 
   accountability() {
     return (
@@ -119,13 +129,13 @@ class Accountability extends Component {
           <tbody>
             {donTasks.map((elem, i) => (
               <tr key={i++}>
-                <td>{i++}</td>
-                <td>{elem.username}</td>
-                <td>{elem.task}</td>
-                <td>{elem.often}</td>
-                <td>{elem.other}</td>
-                <td>
-                  <button className="btn btn-sm btn-success text-light">Complete</button>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{i++}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.username}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.task}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.often}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.other}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>
+                  <button className={elem.isCompleted === false ? 'btn btn-sm btn-success text-light' : 'btn btn-sm btn-warning text-dark'} onClick={() => this.markComplete({ id: elem._id, isCompleted: elem.isCompleted })}>{elem.isCompleted === false ? 'Mark Complete' : 'Mark Incomplete'}</button>
                   {' '}
                   {' '}
                   <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteTask(elem._id)}>Delete</button>
@@ -168,13 +178,13 @@ class Accountability extends Component {
           <tbody>
             {randyTasks.map((elem, i) => (
               <tr key={i++}>
-                <td>{i++}</td>
-                <td>{elem.username}</td>
-                <td>{elem.task}</td>
-                <td>{elem.often}</td>
-                <td>{elem.other}</td>
-                <td>
-                  <button className="btn btn-sm btn-success text-light">Complete</button>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{i++}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.username}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.task}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.often}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.other}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>
+                  <button className={elem.isCompleted === false ? 'btn btn-sm btn-success text-light' : 'btn btn-sm btn-warning text-dark'} onClick={() => this.markComplete({ id: elem._id, isCompleted: elem.isCompleted })}>{elem.isCompleted === false ? 'Mark Complete' : 'Mark Incomplete'}</button>
                   {' '}
                   {' '}
                   <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteTask(elem._id)}>Delete</button>

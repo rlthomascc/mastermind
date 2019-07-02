@@ -15,10 +15,10 @@ const Tasks = (props) => {
       date: e.target.date.value,
     })
       .then((data) => {
-        console.log(data, 'data');
-        location.reload();
+        console.log(data, 'TASK DATA');
       })
       .catch(err => console.log(err));
+    location.reload();
   };
 
   return (
