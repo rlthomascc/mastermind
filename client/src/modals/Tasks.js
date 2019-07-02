@@ -14,7 +14,10 @@ const Tasks = (props) => {
       other: e.target.other.value,
       date: e.target.date.value,
     })
-      .then(data => console.log(data, 'data'))
+      .then((data) => {
+        console.log(data, 'data');
+        location.reload();
+      })
       .catch(err => console.log(err));
   };
 
@@ -23,7 +26,7 @@ const Tasks = (props) => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>User</label>
-          <select id="user" className="form-control">
+          <select id="user" className="form-control" required>
             <option selected>Choose...</option>
             {/* make this loop through props */}
             <option>Randy Thomas</option>
@@ -32,11 +35,11 @@ const Tasks = (props) => {
         </div>
         <div className="form-group">
           <label>Task</label>
-          <input id="task" type="text" className="form-control" placeholder="Enter task here" />
+          <input id="task" type="text" className="form-control" placeholder="Enter task here" required />
         </div>
         <div className="form-group">
           <label>How Often Do You Want To Be Reminded?</label>
-          <select id="often" className="form-control">
+          <select id="often" className="form-control" required>
             <option selected>Choose...</option>
             <option>Daily</option>
             <option>Weekly</option>

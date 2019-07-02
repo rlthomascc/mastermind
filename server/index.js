@@ -133,6 +133,15 @@ app.get('/tasks', (req, res) => {
   });
 });
 
+app.post('/taskDelete', (req, res) => {
+  db.Tasks.findByIdAndRemove(req.body.id, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.send('Task successfully delted');
+  });
+});
+
 app.post('/todo', (req, res) => {
   db.todoSave({
     username: req.body.user,
