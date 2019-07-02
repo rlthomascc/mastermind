@@ -58,40 +58,69 @@ class Accountability extends Component {
     this.setState({ taskModal: false });
   }
 
+  deleteForum(e) {
+    console.log(e, 'FIRST SENT');
+    axios.post('/forumDelete', { id: e })
+      .then((data) => {
+        console.log(data);
+        if (data = 'Forum successfully deleted') {
+          location.reload();
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
 
   forums() {
     const { forums } = this.state;
     return (
       <div>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">User</th>
-              <th scope="col">Title</th>
-              <th scope="col">Description</th>
-              <th scope="col" />
-            </tr>
-          </thead>
-          <tbody>
-            {forums.map((elem, i) => (
-              <tr key={i++}>
-                <td>{i++}</td>
-                <td>{elem.username}</td>
-                <td>{elem.title}</td>
-                <td>{elem.description}</td>
-                <td>
-                  <button className="btn btn-sm btn-primary text-light">Edit</button>
-                  {' '}
-                  {' '}
-                  <button className="btn btn-sm btn-danger text-light">Delete</button>
-                  {' '}
-                  {' '}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <br />
+        <br />
+        <p className="text-center">
+          <i>
+          The purpose of this Forum is to showcase inspirational ideas,
+            {' '}
+            <br />
+          books, videos, quotes, and any media source with worthy substance that will
+            {' '}
+            <br />
+          shed light, motivate, or enlighten our brothers.
+            {' '}
+
+          </i>
+
+        </p>
+        <br />
+        <p className="text-center text-warning">
+          <i>
+          As iron sharpens iron,
+            {' '}
+            <br />
+          so one person sharpens another.
+            {' '}
+            <br />
+          - Proverbs 27:17
+
+          </i>
+        </p>
+
+
+        {forums.map((elem, i) => (
+          <div className="card">
+            <h5 className="card-header">{elem.title}</h5>
+            <div className="card-body">
+              <p className="card-text">{`Description: ${elem.description}`}</p>
+              <p className="card-text">{`- ${elem.username}`}</p>
+              <a className="btn btn-info btn-sm" href={elem.link} target="_blank">{elem.link.length > 1 ? 'Link' : 'N/A'}</a>
+              {' '}
+              <button className="btn btn-danger btn-sm" onClick={() => this.deleteForum(elem._id)}>Delete</button>
+              <br />
+              <br />
+              <p className="card-text text-muted" id="dateCreated">{`Date Created: ${elem.date != null ? elem.date.slice(0, 10) : 'Unknown'}`}</p>
+            </div>
+          </div>
+        ))}
       </div>
     );
   }

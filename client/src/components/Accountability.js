@@ -95,7 +95,7 @@ class Accountability extends Component {
     console.log(donTasks);
     return (
       <div className="accountabilityTables">
-        <p className="h6 text-center text-success font-weight-bold">Don Wright</p>
+        <p className="h4 text-center text-success font-weight-bold">Don Wright</p>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -147,7 +147,7 @@ class Accountability extends Component {
     console.log(randyTasks);
     return (
       <div className="accountabilityTables">
-        <p className="h6 text-center text-success font-weight-bold">Randy Thomas</p>
+        <p className="h4 text-center text-success font-weight-bold">Randy Thomas</p>
         <table className="table table-striped">
           <thead>
             <tr>

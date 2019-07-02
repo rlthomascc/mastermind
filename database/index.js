@@ -25,6 +25,7 @@ const forumSchema = ({
   username: String,
   title: String,
   description: String,
+  link: String,
   date: { type: Date, default: new Date().getTime() },
 });
 
@@ -32,7 +33,7 @@ const tasksSchema = ({
   username: String,
   task: String,
   often: String,
-  other: { type: String, default: null },
+  other: { type: String, default: 'N/A' },
   date: { type: Date, default: new Date().getTime() },
   isCompleted: { type: Boolean, default: false },
 });
@@ -97,6 +98,7 @@ function forumSave(e) {
     username: e.username,
     title: e.title,
     description: e.description,
+    link: e.link,
     date: e.date,
   });
   obj.save();

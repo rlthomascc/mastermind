@@ -88,17 +88,28 @@ app.post('/forum', (req, res) => {
     username: req.body.user,
     title: req.body.title,
     description: req.body.description,
+    link: req.body.link,
     date: req.body.date,
   });
   console.log('Saved to DB');
 });
 
 app.get('/forum', (req, res) => {
-  db.Forum.find().exec((err, data) => {
+  db.Forum.find().sort({ date: 'descending' }).exec((err, data) => {
     if (err) {
       res.send(err);
     }
     res.send(data);
+  });
+});
+
+app.post('/forumDelete', (req, res) => {
+  console.log(req.body);
+  db.Forum.findByIdAndRemove(req.body.id, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.send('Forum successfully deleted');
   });
 });
 
