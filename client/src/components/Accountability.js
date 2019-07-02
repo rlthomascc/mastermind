@@ -57,6 +57,15 @@ class Accountability extends Component {
     this.setState({ taskModal: false });
   }
 
+  deleteTask(e) {
+    console.log(e);
+    axios.post('/taskDelete', { id: e })
+      .then((data) => {
+        location.reload();
+      })
+      .catch(err => console.log(err));
+  }
+
 
   accountability() {
     return (
@@ -119,10 +128,7 @@ class Accountability extends Component {
                   <button className="btn btn-sm btn-success text-light">Complete</button>
                   {' '}
                   {' '}
-                  <button className="btn btn-sm btn-primary text-light">Edit</button>
-                  {' '}
-                  {' '}
-                  <button className="btn btn-sm btn-danger text-light">Delete</button>
+                  <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteTask(elem._id)}>Delete</button>
                   {' '}
                   {' '}
                 </td>
@@ -171,10 +177,7 @@ class Accountability extends Component {
                   <button className="btn btn-sm btn-success text-light">Complete</button>
                   {' '}
                   {' '}
-                  <button className="btn btn-sm btn-primary text-light">Edit</button>
-                  {' '}
-                  {' '}
-                  <button className="btn btn-sm btn-danger text-light">Delete</button>
+                  <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteTask(elem._id)}>Delete</button>
                   {' '}
                   {' '}
                 </td>
