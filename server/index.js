@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/login', (req, res) => {
+  console.log(req.body, 'LOGIN BODY');
   db.Login.find({ username: req.body.user }).exec((err, data) => {
     if (err) {
       console.log(err);
@@ -81,6 +82,29 @@ app.get('/session', (req, res) => {
         message: 'Expired Token',
       });
     }
+  });
+});
+
+app.patch('/session', (req, res) => {
+  console.log(req.body, 'body delete');
+  // db.Session.findOneAndUpdate({
+  //   userId: req.body.id,
+  // }, {
+  //   $set: {
+  //     isDeleted: true,
+  //   },
+  // }, null, (err, data) => {
+  //   console.log(data, 'DATA BACK');
+  //   if (err) {
+  //     res.send(err);
+  //   }
+  //   res.send('Successfully logged out');
+  // });
+  db.Session.findOneAndRemove({ userId: req.body.id }, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(data);
   });
 });
 

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {
-  Redirect, Route, HashRouter, Link,
+  Redirect,
 } from 'react-router-dom';
 import Navbar from './Navbar';
 import Homepage from './Homepage';
@@ -22,7 +22,7 @@ class Home extends Component {
 
   componentWillMount() {
     const token = ls.getFromStorage('token');
-    if (token.length > 1) {
+    if (token) {
       axios.get('/session', { token })
         .then((data) => {
           if (data.data.success === false) {
@@ -58,7 +58,6 @@ class Home extends Component {
   render() {
     const { isLoggedIn } = this.props;
     const { savings, goals, todos } = this.state;
-    console.log(ls.getFromStorage('token'), 'TOKEN');
     if (isLoggedIn === true) {
       return (
         <div>

@@ -6,10 +6,14 @@
 import React, { Component } from 'react';
 import { FaBookOpen } from 'react-icons/fa';
 import Modal from 'react-awesome-modal';
+import {
+  Redirect, Route, HashRouter, Link,
+} from 'react-router-dom';
 import Navbar from './Navbar';
 import ForumForm from '../modals/ForumForm';
 
 const axios = require('axios');
+const ls = require('../../utils/storage');
 
 class Accountability extends Component {
   constructor(props) {
@@ -25,6 +29,19 @@ class Accountability extends Component {
   }
 
   componentDidMount() {
+    const token = ls.getFromStorage('token');
+    console.log(this.props, 'props');
+    if (token) {
+      axios.get('/session', { token })
+        .then((data) => {
+          if (data.data.success === false) {
+            this.props.logout();
+          }
+        })
+        .catch(err => console.log(err));
+    } else if (token === null) {
+      this.props.logout();
+    }
     axios.get('/forum')
       .then((data) => {
         this.setState({
@@ -159,13 +176,16 @@ class Accountability extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Navbar />
-        {this.accountability()}
-        {this.forums()}
-      </div>
-    );
+    if (this.props.isLoggedIn === true) {
+      return (
+        <div>
+          <Navbar />
+          {this.accountability()}
+          {this.forums()}
+        </div>
+      );
+    }
+    return <Redirect to="/" />;
   }
 }
 
