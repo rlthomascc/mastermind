@@ -19,6 +19,7 @@ const sessionSchema = ({
   isDeleted: { type: Boolean, default: false },
   username: String,
   userId: String,
+  changedBy: { type: String, default: null },
 });
 
 const forumSchema = ({
@@ -26,7 +27,9 @@ const forumSchema = ({
   title: String,
   description: String,
   link: String,
+  isDeleted: { type: Boolean, default: false },
   date: { type: Date, default: new Date().getTime() },
+  changedBy: { type: String, default: null },
 });
 
 const tasksSchema = ({
@@ -35,21 +38,25 @@ const tasksSchema = ({
   often: String,
   other: { type: String, default: 'N/A' },
   date: { type: Date, default: new Date().getTime() },
+  isDeleted: { type: Boolean, default: false },
   isCompleted: { type: Boolean, default: false },
+  changedBy: { type: String, default: null },
 });
 
 const todoSchema = ({
   username: String,
   todo: String,
   date: { type: Date, default: new Date().getTime() },
+  isDeleted: { type: Boolean, default: false },
   isCompleted: { type: Boolean, default: false },
-
+  changedBy: { type: String, default: null },
 });
 
 const savingsSchema = ({
   username: String,
   amount: Number,
   Date: { type: Date, default: new Date().getTime() },
+  changedBy: { type: String, default: null },
 });
 
 const goalSchema = ({
@@ -57,7 +64,9 @@ const goalSchema = ({
   goal: String,
   steps: String,
   date: { type: Date, default: new Date().getTime() },
+  isDeleted: { type: Boolean, default: false },
   isCompleted: { type: Boolean, default: false },
+  changedBy: { type: String, default: null },
 });
 
 // models

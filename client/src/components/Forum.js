@@ -20,6 +20,7 @@ class Accountability extends Component {
       forumForm: [],
       // savings: [],
       forums: [],
+      user: '',
     };
   }
 
@@ -31,6 +32,12 @@ class Accountability extends Component {
         });
       })
       .catch(err => console.log(err, 'err'));
+    axios.get('/session')
+      .then((data) => {
+        this.setState({
+          user: data.data.user[0].username,
+        });
+      });
   }
 
   setActive(e) {
@@ -59,13 +66,10 @@ class Accountability extends Component {
   }
 
   deleteForum(e) {
-    console.log(e, 'FIRST SENT');
-    axios.post('/forumDelete', { id: e })
+    axios.post('/forumDelete', { id: e, user: this.state.user })
       .then((data) => {
         console.log(data);
-        if (data = 'Forum successfully deleted') {
-          location.reload();
-        }
+        location.reload();
       })
       .catch(err => console.log(err));
   }
@@ -106,21 +110,25 @@ class Accountability extends Component {
         </p>
 
 
-        {forums.map((elem, i) => (
-          <div className="card">
-            <h5 className="card-header">{elem.title}</h5>
-            <div className="card-body">
-              <p className="card-text">{`Description: ${elem.description}`}</p>
-              <p className="card-text">{`- ${elem.username}`}</p>
-              <a className="btn btn-info btn-sm" href={elem.link} target="_blank">{elem.link.length > 1 ? 'Link' : 'N/A'}</a>
-              {' '}
-              <button className="btn btn-danger btn-sm" onClick={() => this.deleteForum(elem._id)}>Delete</button>
-              <br />
-              <br />
-              <p className="card-text text-muted" id="dateCreated">{`Date Created: ${elem.date != null ? elem.date.slice(0, 10) : 'Unknown'}`}</p>
-            </div>
-          </div>
-        ))}
+        {forums.map((elem, i) => {
+          if (elem.isDeleted === false) {
+            return (
+              <div className="card">
+                <h5 className="card-header">{elem.title}</h5>
+                <div className="card-body">
+                  <p className="card-text">{`Description: ${elem.description}`}</p>
+                  <p className="card-text">{`- ${elem.username}`}</p>
+                  <a className="btn btn-info btn-sm" href={elem.link} target="_blank">{elem.link.length > 1 ? 'Link' : 'N/A'}</a>
+                  {' '}
+                  <button className="btn btn-danger btn-sm" onClick={() => this.deleteForum(elem._id)}>Delete</button>
+                  <br />
+                  <br />
+                  <p className="card-text text-muted" id="dateCreated">{`Date Created: ${elem.date != null ? elem.date.slice(0, 10) : 'Unknown'}`}</p>
+                </div>
+              </div>
+            );
+          }
+        })}
       </div>
     );
   }
