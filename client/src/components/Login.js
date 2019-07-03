@@ -34,6 +34,7 @@ class Login extends Component {
     const pass = e.target.password.value;
     axios.post('/login', { user, pass })
       .then((data) => {
+        console.log(data, 'DATA LOGIN');
         if (data.data.success === true) {
           this.props.setToken(data.data.token);
           this.props.toggleLog();

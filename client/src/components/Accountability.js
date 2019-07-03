@@ -6,10 +6,14 @@
 import React, { Component } from 'react';
 import { FaTasks } from 'react-icons/fa';
 import Modal from 'react-awesome-modal';
+import {
+  Redirect, Route, HashRouter, Link,
+} from 'react-router-dom';
 import Navbar from './Navbar';
 import Tasks from '../modals/Tasks';
 
 const axios = require('axios');
+const ls = require('../../utils/storage');
 
 class Accountability extends Component {
   constructor(props) {
@@ -24,6 +28,18 @@ class Accountability extends Component {
   }
 
   componentDidMount() {
+    const token = ls.getFromStorage('token');
+    if (token) {
+      axios.get('/session', { token })
+        .then((data) => {
+          if (data.data.success === false) {
+            this.props.logout();
+          }
+        })
+        .catch(err => console.log(err));
+    } else if (token === null) {
+      this.props.logout();
+    }
     axios.get('/tasks')
       .then((data) => {
         this.setState({
@@ -33,9 +49,11 @@ class Accountability extends Component {
       .catch(err => console.log(err, 'err'));
     axios.get('/session')
       .then((data) => {
-        this.setState({
-          user: data.data.user[0].username,
-        });
+        if (data.data.success !== false) {
+          this.setState({
+            user: data.data.user[0].username,
+          });
+        }
       })
       .catch(err => console.log(err, 'error'));
   }
@@ -215,14 +233,17 @@ class Accountability extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Navbar />
-        {this.accountability()}
-        {this.donsList()}
-        {this.randyList()}
-      </div>
-    );
+    if (this.props.isLoggedIn === true) {
+      return (
+        <div>
+          <Navbar />
+          {this.accountability()}
+          {this.donsList()}
+          {this.randyList()}
+        </div>
+      );
+    }
+    return <Redirect to="/" />;
   }
 }
 
