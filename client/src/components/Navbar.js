@@ -49,7 +49,12 @@ const Navbar = props => (
           <a className="nav-link" href="#/forum">Forum</a>
         </li>
 
+        <li className="nav-item">
+          <button className="btn btn-outline-danger my-2 my-sm-0" type="submit">Log Out</button>
+        </li>
+
       </ul>
+
     </div>
   </nav>
 );

@@ -18,6 +18,7 @@ class Accountability extends Component {
       active: 'Home',
       taskModal: false,
       tasks: [],
+      user: '',
       // savings: [],
     };
   }
@@ -30,6 +31,13 @@ class Accountability extends Component {
         });
       })
       .catch(err => console.log(err, 'err'));
+    axios.get('/session')
+      .then((data) => {
+        this.setState({
+          user: data.data.user[0].username,
+        });
+      })
+      .catch(err => console.log(err, 'error'));
   }
 
   setActive(e) {
@@ -59,7 +67,7 @@ class Accountability extends Component {
 
   deleteTask(e) {
     console.log(e);
-    axios.post('/taskDelete', { id: e })
+    axios.post('/taskDelete', { id: e, user: this.state.user })
       .then((data) => {
         location.reload();
       })
@@ -67,11 +75,9 @@ class Accountability extends Component {
   }
 
   markComplete(e) {
-    console.log(e);
-    axios.patch('/tasks', { id: e.id, isCompleted: e.isCompleted })
+    axios.patch('/tasks', { id: e.id, isCompleted: e.isCompleted, user: this.state.user })
       .then((data) => {
         location.reload();
-        console.log(data);
       })
       .catch(err => console.log(err));
   }
@@ -127,23 +133,27 @@ class Accountability extends Component {
             </tr>
           </thead>
           <tbody>
-            {donTasks.map((elem, i) => (
-              <tr key={i++}>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{i++}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.username}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.task}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.often}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.other}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>
-                  <button className={elem.isCompleted === false ? 'btn btn-sm btn-success text-light' : 'btn btn-sm btn-warning text-dark'} onClick={() => this.markComplete({ id: elem._id, isCompleted: elem.isCompleted })}>{elem.isCompleted === false ? 'Mark Complete' : 'Mark Incomplete'}</button>
-                  {' '}
-                  {' '}
-                  <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteTask(elem._id)}>Delete</button>
-                  {' '}
-                  {' '}
-                </td>
-              </tr>
-            ))}
+            {donTasks.map((elem, i) => {
+              if (elem.isDeleted === false) {
+                return (
+                  <tr key={i++}>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{i++}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.username}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.task}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.often}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.other}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>
+                      <button className={elem.isCompleted === false ? 'btn btn-sm btn-success text-light' : 'btn btn-sm btn-warning text-dark'} onClick={() => this.markComplete({ id: elem._id, isCompleted: elem.isCompleted })}>{elem.isCompleted === false ? 'Mark Complete' : 'Mark Incomplete'}</button>
+                      {' '}
+                      {' '}
+                      <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteTask(elem._id)}>Delete</button>
+                      {' '}
+                      {' '}
+                    </td>
+                  </tr>
+                );
+              }
+            })}
           </tbody>
         </table>
       </div>
@@ -176,23 +186,28 @@ class Accountability extends Component {
             </tr>
           </thead>
           <tbody>
-            {randyTasks.map((elem, i) => (
-              <tr key={i++}>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{i++}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.username}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.task}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.often}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.other}</td>
-                <td className={elem.isCompleted === true ? 'table-success' : ''}>
-                  <button className={elem.isCompleted === false ? 'btn btn-sm btn-success text-light' : 'btn btn-sm btn-warning text-dark'} onClick={() => this.markComplete({ id: elem._id, isCompleted: elem.isCompleted })}>{elem.isCompleted === false ? 'Mark Complete' : 'Mark Incomplete'}</button>
-                  {' '}
-                  {' '}
-                  <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteTask(elem._id)}>Delete</button>
-                  {' '}
-                  {' '}
-                </td>
-              </tr>
-            ))}
+            {randyTasks.map((elem, i) => {
+              console.log(elem.isDeleted);
+              if (elem.isDeleted === false) {
+                return (
+                  <tr key={i++}>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{i++}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.username}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.task}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.often}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.other}</td>
+                    <td className={elem.isCompleted === true ? 'table-success' : ''}>
+                      <button className={elem.isCompleted === false ? 'btn btn-sm btn-success text-light' : 'btn btn-sm btn-warning text-dark'} onClick={() => this.markComplete({ id: elem._id, isCompleted: elem.isCompleted })}>{elem.isCompleted === false ? 'Mark Complete' : 'Mark Incomplete'}</button>
+                      {' '}
+                      {' '}
+                      <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteTask(elem._id)}>Delete</button>
+                      {' '}
+                      {' '}
+                    </td>
+                  </tr>
+                );
+              }
+            })}
           </tbody>
         </table>
       </div>

@@ -51,6 +51,7 @@ app.get('/session', (req, res) => {
         res.send({
           success: true,
           message: 'Valid Token',
+          user: data,
         });
       } else {
         db.Session.findOneAndUpdate({
@@ -70,6 +71,7 @@ app.get('/session', (req, res) => {
           res.send({
             success: true,
             message: 'Updated Token',
+            user: sessions,
           });
         });
       }
@@ -81,6 +83,7 @@ app.get('/session', (req, res) => {
     }
   });
 });
+
 
 app.post('/forum', (req, res) => {
   console.log(req.body.user, req.body.title, req.body.description, req.body.date);
@@ -105,11 +108,18 @@ app.get('/forum', (req, res) => {
 
 app.post('/forumDelete', (req, res) => {
   console.log(req.body);
-  db.Forum.findByIdAndRemove(req.body.id, (err, data) => {
+  db.Forum.findOneAndUpdate({
+    _id: req.body.id,
+  }, {
+    $set: {
+      isDeleted: true,
+      changedBy: req.body.user,
+    },
+  }, null, (err, data) => {
     if (err) {
-      res.status(500).send(err);
+      res.send(err);
     }
-    res.send('Forum successfully deleted');
+    res.send('Successfully deleted');
   });
 });
 
@@ -141,6 +151,7 @@ app.patch('/tasks', (req, res) => {
     }, {
       $set: {
         isCompleted: true,
+        changedBy: req.body.user,
       },
     }, null, (err, data) => {
       if (err) {
@@ -155,6 +166,7 @@ app.patch('/tasks', (req, res) => {
     }, {
       $set: {
         isCompleted: false,
+        changedBy: req.body.user,
       },
     }, null, (err, data) => {
       if (err) {
@@ -166,11 +178,18 @@ app.patch('/tasks', (req, res) => {
 });
 
 app.post('/taskDelete', (req, res) => {
-  db.Tasks.findByIdAndRemove(req.body.id, (err, data) => {
+  db.Tasks.findOneAndUpdate({
+    _id: req.body.id,
+  }, {
+    $set: {
+      isDeleted: true,
+      changedBy: req.body.user,
+    },
+  }, null, (err, data) => {
     if (err) {
-      res.status(500).send(err);
+      res.send(err);
     }
-    res.send('Task successfully delted');
+    res.send('Successfully changed');
   });
 });
 
