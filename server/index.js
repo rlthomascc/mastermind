@@ -253,6 +253,15 @@ app.get('/savings', (req, res) => {
   });
 });
 
+app.patch('/savings', (req, res) => {
+  db.Savings.findOneAndRemove({ _id: req.body.id }, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(data);
+  });
+});
+
 app.post('/goal', (req, res) => {
   console.log(req.body.user, req.body.goal, req.body.steps, req.body.date);
   db.goalSave({

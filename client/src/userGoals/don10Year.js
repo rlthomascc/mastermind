@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
-import { FaBullseye, FaMoneyBillAlt, FaListOl } from 'react-icons/fa';
+import { FaCheckCircle, FaListOl } from 'react-icons/fa';
 import Modal from 'react-awesome-modal';
 import axios from 'axios';
 import TenYear from '../modals/TenYear';
@@ -70,7 +70,7 @@ class DonTenYear extends Component {
       <div className="d-flex flex-row justify-content-center  actionButtons">
         <div className="actionIndividuals">
           <a className="btn btn-info text-light" onClick={() => this.openTenYear('ToDo')}>
-            <FaListOl id="icon" size={25} id="icon" className="text-light" />
+            <FaCheckCircle id="icon" size={25} id="icon" className="text-light" />
             {' '}
               New 10 Year Plan
           </a>
