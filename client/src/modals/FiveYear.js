@@ -12,7 +12,7 @@ const FiveYear = (props) => {
       user: e.target.user.value,
       goal: e.target.goal.value,
     })
-      .then(data => console.log(data))
+      .then(data => location.reload())
       .catch(err => console.log(err, 'err'));
   };
 

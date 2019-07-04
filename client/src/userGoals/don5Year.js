@@ -98,7 +98,7 @@ class DonFiveYear extends Component {
           if (elem.username === 'Don Wright') {
             return (
               <div className="card">
-                <h5 className="card-header">{`${elem.username} 10 Year Plan`}</h5>
+                <h5 className="card-header">{`${elem.username} 5 Year Plan`}</h5>
                 <div className="card-body">
                   <p className="card-text">{elem.goal}</p>
                   <a href="#" className="btn btn-danger" onClick={() => this.deleteFiveYear(elem._id)}>Delete</a>
