@@ -273,6 +273,60 @@ app.get('/goal', (req, res) => {
   });
 });
 
+app.post('/tenYear', (req, res) => {
+  console.log(req.body);
+  db.tenYearSave({
+    user: req.body.user,
+    goal: req.body.goal,
+  });
+  console.log('Saved to DB');
+});
+
+app.get('/tenYear', (req, res) => {
+  db.TenYear.find().exec((err, data) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(data);
+  });
+});
+
+app.patch('/tenYear', (req, res) => {
+  db.TenYear.findOneAndRemove({ _id: req.body.id }, (err, data) => {
+    console.log(data, 'DATAAA');
+    if (err) {
+      console.log(err);
+    }
+    res.send(data);
+  });
+});
+
+app.post('/fiveYear', (req, res) => {
+  console.log(req.body);
+  db.fiveYearSave({
+    user: req.body.user,
+    goal: req.body.goal,
+  });
+  console.log('Saved to DB');
+});
+app.get('/fiveYear', (req, res) => {
+  db.FiveYear.find().exec((err, data) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(data);
+  });
+});
+
+app.patch('/fiveYear', (req, res) => {
+  db.FiveYear.findOneAndRemove({ _id: req.body.id }, (err, data) => {
+    console.log(data, 'DATAAA');
+    if (err) {
+      console.log(err);
+    }
+    res.send(data);
+  });
+});
 
 const port = 3000;
 

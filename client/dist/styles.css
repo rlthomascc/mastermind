@@ -75,3 +75,24 @@ body {
 #dateCreated {
     font-size: 12px;
 }
+
+#userLinks {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#userLinkContainer {
+    margin-top: 50px;
+}
+
+.userGoalContainer {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 100px;
+}
+
+.goalHeader {
+    margin: auto;
+    margin-top: 10px;
+    width: 70%;
+}

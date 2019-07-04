@@ -69,6 +69,24 @@ const goalSchema = ({
   changedBy: { type: String, default: null },
 });
 
+const tenYearSchema = ({
+  username: String,
+  goal: String,
+  date: { type: Date, default: new Date().getTime() },
+});
+
+const fiveYearSchema = ({
+  username: String,
+  goal: String,
+  date: { type: Date, default: new Date().getTime() },
+});
+
+const oneYearSchema = ({
+  username: String,
+  goal: String,
+  date: { type: Date, default: new Date().getTime() },
+});
+
 // models
 const Login = mongoose.model('Login', loginSchema);
 const Session = mongoose.model('Session', sessionSchema);
@@ -77,6 +95,9 @@ const Tasks = mongoose.model('Tasks', tasksSchema);
 const Todo = mongoose.model('Todo', todoSchema);
 const Savings = mongoose.model('Savings', savingsSchema);
 const Goal = mongoose.model('Goal', goalSchema);
+const TenYear = mongoose.model('TenYear', tenYearSchema);
+const FiveYear = mongoose.model('FiveYear', fiveYearSchema);
+const OneYear = mongoose.model('OneYear', oneYearSchema);
 
 
 // save functions
@@ -157,7 +178,34 @@ function goalSave(e) {
     date: e.date,
   });
   obj.save();
-  console.log('Data Saved to MongoDB Databse');
+  console.log('Data Saved to MongoDB Database');
+}
+
+function tenYearSave(e) {
+  const obj = new TenYear({
+    username: e.user,
+    goal: e.goal,
+  });
+  obj.save();
+  console.log('Data Saved to MongoDB Database');
+}
+
+function fiveYearSave(e) {
+  const obj = new FiveYear({
+    username: e.user,
+    goal: e.goal,
+  });
+  obj.save();
+  console.log('Data Saved to MongoDB Database');
+}
+
+function oneYearSave(e) {
+  const obj = new OneYear({
+    username: e.user,
+    goal: e.goal,
+  });
+  obj.save();
+  console.log('Data Saved to MongoDB Database');
 }
 
 const funcs = {
@@ -175,6 +223,11 @@ const funcs = {
   savingsSave,
   Goal,
   goalSave,
-
+  TenYear,
+  tenYearSave,
+  FiveYear,
+  fiveYearSave,
+  OneYear,
+  oneYearSave,
 };
 module.exports = funcs;

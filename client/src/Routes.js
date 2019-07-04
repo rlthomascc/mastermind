@@ -14,6 +14,12 @@ import RandyGoals from './userSites/RandyGoals';
 import DonGoals from './userSites/DonGoals';
 import RandyThomas from './userSites/RandyThomas';
 import DonWright from './userSites/DonWright';
+import Don10Year from './userGoals/don10Year';
+import Don5Year from './userGoals/don5Year';
+import Don1Year from './userGoals/don1Year';
+import Randy10Year from './userGoals/randy10Year';
+import Randy5Year from './userGoals/randy5Year';
+import Randy1Year from './userGoals/randy1Year';
 
 class Routes extends Component {
   constructor(props) {
@@ -85,6 +91,54 @@ class Routes extends Component {
             strict
             render={props => (
               <RandyThomas isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
+            )}
+          />
+          <Route
+            path="/don10Year"
+            exact
+            strict
+            render={props => (
+              <Don10Year isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
+            )}
+          />
+          <Route
+            path="/randy10Year"
+            exact
+            strict
+            render={props => (
+              <Randy10Year isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
+            )}
+          />
+          <Route
+            path="/don5Year"
+            exact
+            strict
+            render={props => (
+              <Don5Year isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
+            )}
+          />
+          <Route
+            path="/randy5Year"
+            exact
+            strict
+            render={props => (
+              <Randy5Year isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
+            )}
+          />
+          <Route
+            path="/don1Year"
+            exact
+            strict
+            render={props => (
+              <Don1Year isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
+            )}
+          />
+          <Route
+            path="/randy1Year"
+            exact
+            strict
+            render={props => (
+              <Randy1Year isLoggedIn={this.props.isLoggedIn} logout={this.props.logout} token={this.props.token} toggleLog={this.props.toggleLog} setToken={this.props.setToken} />
             )}
           />
         </div>
