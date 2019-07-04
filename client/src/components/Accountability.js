@@ -244,12 +244,12 @@ class Accountability extends Component {
           <br />
           <p className="text-center text-success">
             <i>
-            "The benefits and possibilities that are created
+            "If you dont know where you're going
               {' '}
               <br />
-            by being personally accountable are countless."
+            you might not like where you end up."
               <br />
-            - Unknown
+            - David Bach
             </i>
             {' '}
           </p>
