@@ -138,7 +138,8 @@ class Accountability extends Component {
     console.log(donTasks);
     return (
       <div className="accountabilityTables">
-        <p className="h4 text-center text-success font-weight-bold">Don Wright</p>
+        <hr />
+        <p className="text-center font-weight-bold">Don Wright</p>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -191,7 +192,8 @@ class Accountability extends Component {
     console.log(randyTasks);
     return (
       <div className="accountabilityTables">
-        <p className="h4 text-center text-success font-weight-bold">Randy Thomas</p>
+        <hr />
+        <p className="text-center font-weight-bold">Randy Thomas</p>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -238,6 +240,19 @@ class Accountability extends Component {
         <div>
           <Navbar />
           {this.accountability()}
+          <br />
+          <br />
+          <p className="text-center text-success">
+            <i>
+            "The benefits and possibilities that are created
+              {' '}
+              <br />
+            by being personally accountable are countless."
+              <br />
+            - Unknown
+            </i>
+            {' '}
+          </p>
           {this.donsList()}
           {this.randyList()}
         </div>

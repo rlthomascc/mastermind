@@ -3,11 +3,13 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import ActionButtons from '../components/ActionButtons';
+import RandyChart from '../charts/RandyChart';
 
-const RandyThomas = () => (
+const RandyThomas = props => (
   <div>
     <Navbar />
     <ActionButtons />
+    <RandyChart />
   </div>
 );
 
