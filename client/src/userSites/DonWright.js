@@ -3,11 +3,13 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import ActionButtons from '../components/ActionButtons';
+import DonChart from '../charts/DonChart';
 
-const DonWright = () => (
+const DonWright = props => (
   <div>
     <Navbar />
     <ActionButtons />
+    <DonChart />
   </div>
 );
 
