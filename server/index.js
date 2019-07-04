@@ -328,6 +328,33 @@ app.patch('/fiveYear', (req, res) => {
   });
 });
 
+app.post('/oneYear', (req, res) => {
+  console.log(req.body);
+  db.oneYearSave({
+    user: req.body.user,
+    goal: req.body.goal,
+  });
+  console.log('Saved to DB');
+});
+app.get('/oneYear', (req, res) => {
+  db.OneYear.find().exec((err, data) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(data);
+  });
+});
+
+app.patch('/oneYear', (req, res) => {
+  db.OneYear.findOneAndRemove({ _id: req.body.id }, (err, data) => {
+    console.log(data, 'DATAAA');
+    if (err) {
+      console.log(err);
+    }
+    res.send(data);
+  });
+});
+
 const port = 3000;
 
 app.listen(port, () => {
