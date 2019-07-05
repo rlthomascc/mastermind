@@ -36,7 +36,7 @@ const Navbar = (props) => {
           </li>
 
 
-          <li className="nav-item dropdown">
+          {/* <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="#/goals" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Goals
             </a>
@@ -44,7 +44,7 @@ const Navbar = (props) => {
               <a className="dropdown-item" href="#/randyGoals">Randy's Goals</a>
               <a className="dropdown-item" href="#/donGoals">Don's Goals</a>
             </div>
-          </li>
+          </li> */}
 
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

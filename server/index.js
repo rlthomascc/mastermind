@@ -40,6 +40,13 @@ app.post('/login', (req, res) => {
   });
 });
 
+app.post('/newUser', (req, res) => {
+  db.save({
+    username: req.body.user,
+    password: req.body.pass,
+  });
+});
+
 app.get('/session', (req, res) => {
   db.Session.find({ token: req.body.token }).exec((err, data) => {
     if (data.length < 1) {
