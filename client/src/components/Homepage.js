@@ -72,69 +72,11 @@ const Homepage = (props) => {
     </div>
   );
 
-  const donGoalsTable = () => (
-    <div className="table">
-      <p className="font-weight-bold text-center text-success">Don Wright Goals</p>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          {donGoal.map((elem, i) => (
-            <tr key={i++}>
-              <td>{i++}</td>
-              <td>{elem.username}</td>
-              <td>{elem.goal}</td>
-              <td>{elem.steps}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-
-  const randyGoalsTable = () => (
-    <div className="table">
-      <p className="font-weight-bold text-center text-success">Randy Thomas Goals</p>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          {randyGoal.map((elem, i) => (
-            <tr key={i++}>
-              <td>{i++}</td>
-              <td>{elem.username}</td>
-              <td>{elem.goal}</td>
-              <td>{elem.steps}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
 
   const flexTodoTables = () => (
     <div className="d-flex flex-row">
       {randyTodoTable()}
       {donTodoTable()}
-    </div>
-  );
-
-  const flexGoalTables = () => (
-    <div className="d-flex flex-row">
-      {randyGoalsTable()}
-      {donGoalsTable()}
     </div>
   );
 
@@ -144,7 +86,6 @@ const Homepage = (props) => {
       <ActionButtons />
       <DashboardChart />
       {flexTodoTables()}
-      {flexGoalTables()}
     </div>
   );
 };

@@ -32,6 +32,11 @@ class Login extends Component {
     e.preventDefault();
     const user = e.target.username.value;
     const pass = e.target.password.value;
+
+    // axios.post('/newUser', { user, pass })
+    //   .then(data => console.log(data))
+    //   .catch(err => console.log(err));
+
     axios.post('/login', { user, pass })
       .then((data) => {
         console.log(data, 'DATA LOGIN');

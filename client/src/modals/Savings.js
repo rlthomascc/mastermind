@@ -34,10 +34,10 @@ const Savings = (props) => {
           <label>Amount Saved</label>
           <input id="amount" type="number" className="form-control" placeholder="Enter amount here" />
         </div>
-        {/* <div className="form-group">
+        <div className="form-group">
           <label>Date</label>
           <input id="date" type="date" className="form-control" placeholder="Enter date here" />
-        </div> */}
+        </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </div>
