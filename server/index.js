@@ -262,6 +262,7 @@ app.patch('/savings', (req, res) => {
   });
 });
 
+
 app.post('/goal', (req, res) => {
   console.log(req.body.user, req.body.goal, req.body.steps, req.body.date);
   db.goalSave({
@@ -274,12 +275,46 @@ app.post('/goal', (req, res) => {
 });
 
 app.get('/goal', (req, res) => {
-  db.Goal.find().exec((err, data) => {
+  db.Goal.find().sort({ isCompleted: +1 }).exec((err, data) => {
     if (err) {
       res.send(err);
     }
     res.send(data);
   });
+});
+
+app.patch('/goal', (req, res) => {
+  console.log(req.body);
+  if (req.body.isCompleted === false) {
+    db.Goal.findOneAndUpdate({
+      _id: req.body.id,
+    }, {
+      $set: {
+        isCompleted: true,
+        changedBy: req.body.user,
+      },
+    }, null, (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.send('Successfully changed');
+    });
+  }
+  if (req.body.isCompleted === true) {
+    db.Goal.findOneAndUpdate({
+      _id: req.body.id,
+    }, {
+      $set: {
+        isCompleted: false,
+        changedBy: req.body.user,
+      },
+    }, null, (err, data) => {
+      if (err) {
+        res.send(err);
+      }
+      res.send('Successfully changed');
+    });
+  }
 });
 
 app.post('/tenYear', (req, res) => {
