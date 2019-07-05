@@ -57,6 +57,14 @@ class DonWright extends Component {
       .catch(err => console.log(err));
   }
 
+  markComplete(e) {
+    axios.patch('/goal', ({ id: e.id, isCompleted: e.isCompleted }))
+      .then((data) => {
+        location.reload();
+      })
+      .catch(err => console.log(err));
+  }
+
   savingsTable() {
     const { goals, savings } = this.state;
     return (
@@ -93,6 +101,47 @@ class DonWright extends Component {
     );
   }
 
+  goalsTable() {
+    const { goals, savings } = this.state;
+    return (
+      <div className="userTables">
+        <p className="h6 text-center text-success font-weight-bold">Don Goals</p>
+        <hr />
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Goal</th>
+              <th scope="col">Steps</th>
+              <th scope="col">Date</th>
+              <th scope="col" />
+            </tr>
+          </thead>
+          <tbody>
+            {goals.map((elem, i) => (
+              <tr key={i++}>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{i++}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.username}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.goal}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.steps}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>{elem.date.substring(0, 10)}</td>
+                <td className={elem.isCompleted === true ? 'table-success' : ''}>
+                  <button className={elem.isCompleted === false ? 'btn btn-sm btn-success text-light' : 'btn btn-sm btn-warning text-dark'} onClick={() => this.markComplete({ id: elem._id, isCompleted: elem.isCompleted })}>{elem.isCompleted === false ? 'Mark Complete' : 'Mark Incomplete'}</button>
+                  {' '}
+                  {' '}
+                  <button className="btn btn-sm btn-danger text-light" onClick={() => this.deleteGoals(elem._id)}>Delete</button>
+                  {' '}
+                  {' '}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
   navLinks() {
     return (
       <div className="text-center" id="userLinkContainer">
@@ -113,6 +162,7 @@ class DonWright extends Component {
         <DonChart />
         {this.savingsTable()}
         <hr />
+        {this.goalsTable()}
       </div>
     );
   }
