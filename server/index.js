@@ -224,23 +224,6 @@ app.post('/taskDelete', (req, res) => {
   });
 });
 
-app.post('/todo', (req, res) => {
-  db.todoSave({
-    username: req.body.user,
-    todo: req.body.todo,
-    date: req.body.date,
-  });
-  console.log('Saved to DB');
-});
-
-app.get('/todo', (req, res) => {
-  db.Todo.find().exec((err, data) => {
-    if (err) {
-      res.send(err);
-    }
-    res.send(data);
-  });
-});
 
 app.post('/savings', (req, res) => {
   db.savingsSave({

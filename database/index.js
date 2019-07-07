@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-// mongoose.connect('mongodb://localhost/mastermindGroup');
-mongoose.connect('mongodb://<Username>:<Password>@ds245357.mlab.com:45357/thedelrealgroup');
+mongoose.connect('mongodb://localhost/mastermindGroup');
+// mongoose.connect('mongodb://<Username>:<Password>@ds245357.mlab.com:45357/thedelrealgroup');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -38,15 +38,6 @@ const tasksSchema = ({
   task: String,
   often: String,
   other: { type: String, default: 'N/A' },
-  date: { type: Date, default: new Date().getTime() },
-  isDeleted: { type: Boolean, default: false },
-  isCompleted: { type: Boolean, default: false },
-  changedBy: { type: String, default: null },
-});
-
-const todoSchema = ({
-  username: String,
-  todo: String,
   date: { type: Date, default: new Date().getTime() },
   isDeleted: { type: Boolean, default: false },
   isCompleted: { type: Boolean, default: false },
@@ -93,7 +84,6 @@ const Login = mongoose.model('Login', loginSchema);
 const Session = mongoose.model('Session', sessionSchema);
 const Forum = mongoose.model('Forum', forumSchema);
 const Tasks = mongoose.model('Tasks', tasksSchema);
-const Todo = mongoose.model('Todo', todoSchema);
 const Savings = mongoose.model('Savings', savingsSchema);
 const Goal = mongoose.model('Goal', goalSchema);
 const TenYear = mongoose.model('TenYear', tenYearSchema);
@@ -149,16 +139,6 @@ function tasksSave(e) {
   console.log('Data Saved to MongoDB Database');
 }
 
-function todoSave(e) {
-  console.log(e, 'TODO SAVE');
-  const obj = new Todo({
-    username: e.username,
-    todo: e.todo,
-    date: e.date,
-  });
-  obj.save();
-  console.log('Data Saved to MongoDB Database');
-}
 
 function savingsSave(e) {
   console.log(e, 'SAVINGS SAVE');
@@ -218,8 +198,6 @@ const funcs = {
   forumSave,
   Tasks,
   tasksSave,
-  Todo,
-  todoSave,
   Savings,
   savingsSave,
   Goal,
