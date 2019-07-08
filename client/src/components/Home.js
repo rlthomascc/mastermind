@@ -16,7 +16,7 @@ class Home extends Component {
     this.state = {
       savings: [],
       goals: [],
-      todos: [],
+      accountability: [],
     };
   }
 
@@ -45,10 +45,10 @@ class Home extends Component {
         });
       })
       .catch(err => console.log(err, 'err'));
-    axios.get('/todo')
+    axios.get('/tasks')
       .then((data) => {
         this.setState({
-          todos: data.data,
+          accountability: data.data,
         });
       })
       .catch(err => console.log(err, 'err'));
@@ -57,7 +57,7 @@ class Home extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-    const { savings, goals, todos } = this.state;
+    const { savings, goals, accountability } = this.state;
     if (isLoggedIn === true) {
       return (
         <div>
@@ -66,7 +66,7 @@ class Home extends Component {
             changeActive={this.props.changeActive}
             savings={savings}
             goals={goals}
-            todo={todos}
+            todo={accountability}
           />
         </div>
       );

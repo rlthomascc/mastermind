@@ -32,15 +32,19 @@ const Homepage = (props) => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">User</th>
-            <th scope="col">Todo</th>
+            <th scope="col">Task</th>
+            <th scope="col">Reminder Time</th>
+            <th scope="col">Other Reminder</th>
           </tr>
         </thead>
         <tbody>
-          {randyTodo.map((elem, i) => (
+          {donTodo.map((elem, i) => (
             <tr key={i++}>
               <th scope="row">{i++}</th>
               <td>{elem.username}</td>
-              <td>{elem.todo}</td>
+              <td>{elem.task}</td>
+              <td>{elem.often}</td>
+              <td>{elem.other}</td>
             </tr>
           ))}
         </tbody>
@@ -56,7 +60,9 @@ const Homepage = (props) => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">User</th>
-            <th scope="col">Todo</th>
+            <th scope="col">Task</th>
+            <th scope="col">Reminder Time</th>
+            <th scope="col">Other Reminder</th>
           </tr>
         </thead>
         <tbody>
@@ -64,7 +70,9 @@ const Homepage = (props) => {
             <tr key={i++}>
               <th scope="row">{i++}</th>
               <td>{elem.username}</td>
-              <td>{elem.todo}</td>
+              <td>{elem.task}</td>
+              <td>{elem.often}</td>
+              <td>{elem.other}</td>
             </tr>
           ))}
         </tbody>
