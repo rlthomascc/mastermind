@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const axios = require('axios');
 const db = require('../database/index');
+const pass = require('./forbidden');
 
 const app = express();
 
@@ -118,13 +120,28 @@ app.patch('/session', (req, res) => {
 
 app.post('/forum', (req, res) => {
   console.log(req.body.user, req.body.title, req.body.description, req.body.date);
-  db.forumSave({
-    username: req.body.user,
-    title: req.body.title,
-    description: req.body.description,
-    link: req.body.link,
-    date: req.body.date,
-  });
+  axios.get(`http://api.linkpreview.net/?key=${pass.linkPreview}&q=${req.body.link}`)
+    .then((data) => {
+      db.forumSave({
+        username: req.body.user,
+        title: req.body.title,
+        description: req.body.description,
+        link: req.body.link,
+        date: req.body.date,
+        linkTitle: data.data.title,
+        linkImage: data.data.image,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      db.forumSave({
+        username: req.body.user,
+        title: req.body.title,
+        description: req.body.description,
+        link: req.body.link,
+        date: req.body.date,
+      });
+    });
   console.log('Saved to DB');
 });
 

@@ -133,8 +133,12 @@ class Accountability extends Component {
               <div className="card">
                 <h5 className="card-header">{elem.title}</h5>
                 <div className="card-body">
-                  <p className="card-text">{`Description: ${elem.description}`}</p>
-                  <p className="card-text">{`- ${elem.username}`}</p>
+                  <a href={elem.link} target="_blank"><p id="linkPreview" className="card-text"><img className="card-text" src={elem.linkImage} width="600px" /></p></a>
+                  <a href={elem.link} target="_blank"><p id="linkPreview" className="card-text text-primary font-weight-bold"><i>{elem.linkTitle}</i></p></a>
+                  <br />
+                  <br />
+                  <p className="card-text" id="forumText">{`Description: ${elem.description}`}</p>
+                  <p className="card-text" id="forumText">{`- ${elem.username}`}</p>
                   <a className="btn btn-info btn-sm" href={elem.link} target="_blank">{elem.link.length > 1 ? 'Link' : 'N/A'}</a>
                   {' '}
                   <button className="btn btn-danger btn-sm" onClick={() => this.deleteForum(elem._id)}>Delete</button>
@@ -178,7 +182,7 @@ class Accountability extends Component {
   render() {
     if (this.props.isLoggedIn === true) {
       return (
-        <div>
+        <div className="forums">
           <Navbar />
           {this.accountability()}
           {this.forums()}

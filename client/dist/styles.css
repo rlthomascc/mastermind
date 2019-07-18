@@ -101,3 +101,17 @@ body {
     margin: 50px auto 40px  ;
     width: 90%;
 }
+
+#linkPreview {
+    width: 600px;
+    text-align: center;
+    background: #D3D3D3;
+}
+
+#forumText {
+    font-size: 18px;
+}
+
+.forums {
+    margin-bottom: 50px;
+}

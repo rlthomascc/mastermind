@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/mastermindGroup');
-// mongoose.connect('mongodb://<Username>:<Password>@ds245357.mlab.com:45357/thedelrealgroup');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -31,6 +30,8 @@ const forumSchema = ({
   isDeleted: { type: Boolean, default: false },
   date: { type: Date, default: new Date().getTime() },
   changedBy: { type: String, default: null },
+  linkTitle: String,
+  linkImage: String,
 });
 
 const tasksSchema = ({
@@ -121,6 +122,8 @@ function forumSave(e) {
     description: e.description,
     link: e.link,
     date: e.date,
+    linkTitle: e.linkTitle,
+    linkImage: e.linkImage,
   });
   obj.save();
   console.log('Data saved to MongoDB Database');
