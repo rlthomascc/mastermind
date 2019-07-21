@@ -1,46 +1,76 @@
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const morgan = require('morgan');
+const passport = require('passport');
 const db = require('../database/index');
-const pass = require('./forbidden');
+
+// Passport config
+require('./passport/passport')(passport);
+
 
 const app = express();
 
 // COMPARISON ALGORITHM (new Date().getTime() + (1 * 2 * 60 * 60 * 1000))
 
 app.use(express.static(`${__dirname}/../client/dist`));
-app.use(bodyParser.json());
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(session({
+  secret: 'zara-mila',
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.post('/login', (req, res) => {
-  console.log(req.body, 'LOGIN BODY');
-  db.Login.find({ username: req.body.user }).exec((err, data) => {
-    if (err) {
-      console.log(err);
-    }
-    if (data.length < 1) {
-      res.send({
-        success: false,
-        message: 'Account does not exist',
-      });
-    } else if (req.body.pass === data[0]._doc.password) {
-      res.send({
-        success: true,
-        message: 'Valid sign in',
-        token: (data[0]._doc._id).toString(),
-      });
-      db.saveSession({
-        username: req.body.user,
-        token: (data[0]._doc._id).toString(),
-      });
-    } else {
-      res.send({
-        success: false,
-        message: 'Password Invalid',
-      });
-    }
-  });
+// app.post('/login', (req, res) => {
+//   console.log(req.body, 'LOGIN BODY');
+//   req.session.username = req.body.user;
+//   console.log(req.session, 'SESSION');
+
+// db.Login.find({ username: req.body.user }).exec((err, data) => {
+//   if (err) {
+//     console.log(err);
+//   }
+//   if (data.length < 1) {
+//     res.send({
+//       success: false,
+//       message: 'Account does not exist',
+//     });
+//   } else if (req.body.pass === data[0]._doc.password) {
+//     res.send({
+//       success: true,
+//       message: 'Valid sign in',
+//       token: (data[0]._doc._id).toString(),
+//     });
+//     db.saveSession({
+//       username: req.body.user,
+//       token: (data[0]._doc._id).toString(),
+//     });
+//   } else {
+//     res.send({
+//       success: false,
+//       message: 'Password Invalid',
+//     });
+//   }
+// });
+// });
+
+
+// PASSPORTJS
+app.post('/login', (req, res, next) => {
+  console.log('i am in login :)');
+  console.log(req.body, 'BODY IN LGOIN');
+  passport.authenticate('local', {
+    successRedirect: '/#/home',
+    failureRedirect: '/',
+  })(req, res, next);
+  console.log('i have passed the passport authenticate section');
 });
+
 
 app.post('/newUser', (req, res) => {
   db.save({
@@ -50,6 +80,7 @@ app.post('/newUser', (req, res) => {
 });
 
 app.get('/session', (req, res) => {
+  console.log(req.session, 'SESSIONS');
   db.Session.find({ token: req.body.token }).exec((err, data) => {
     if (data.length < 1) {
       res.send({

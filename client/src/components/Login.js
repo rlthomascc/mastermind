@@ -15,41 +15,41 @@ class Login extends Component {
   componentDidMount() {
     const token = ls.getFromStorage('token');
     console.log(token, 'token initial login');
-    axios.get('/session', { token })
-      .then((data) => {
-        if (data.data.success === true) {
-          this.props.toggleLog();
-        } else {
-          console.log('Token is invalid');
-        }
-      })
-      .catch(err => console.log(err));
+    // axios.get('/session', { token })
+    //   .then((data) => {
+    //     if (data.data.success === true) {
+    //       this.props.toggleLog();
+    //     } else {
+    //       console.log('Token is invalid');
+    //     }
+    //   })
+    //   .catch(err => console.log(err));
   }
 
 
   handleSubmit(e) {
     console.log(this.props);
     e.preventDefault();
-    const user = e.target.username.value;
-    const pass = e.target.password.value;
+    const username = e.target.username.value;
+    const password = e.target.password.value;
 
     // axios.post('/newUser', { user, pass })
     //   .then(data => console.log(data))
     //   .catch(err => console.log(err));
 
-    axios.post('/login', { user, pass })
+    axios.post('/login', { username, password })
       .then((data) => {
         console.log(data, 'DATA LOGIN');
-        if (data.data.success === true) {
-          this.props.setToken(data.data.token);
+        if (data.status === 200) {
+        // this.props.setToken(data.data.token);
           this.props.toggleLog();
           ls.setInStorage(data.data.token);
-        }
-        if (data.data.success === false) {
+        } else {
           alert(data.data.message);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err, 'ERROR'));
+    console.log('post is finished');
   }
 
 

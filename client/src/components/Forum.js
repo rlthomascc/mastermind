@@ -134,7 +134,7 @@ class Accountability extends Component {
                 <h5 className="card-header">{elem.title}</h5>
                 <div className="card-body">
                   <a href={elem.link} target="_blank"><p id="linkPreview" className="card-text"><img className="card-text" src={elem.linkImage} width="600px" /></p></a>
-                  <a href={elem.link} target="_blank"><p id="linkPreview" className="card-text text-primary font-weight-bold"><i>{elem.linkTitle}</i></p></a>
+                  <a href={elem.link} target="_blank"><p id="linkPreview" className="card-text text-primary font-weight-bold"><i>{elem.linkTitle === null ? elem.link : elem.linkTitle}</i></p></a>
                   <br />
                   <br />
                   <p className="card-text" id="forumText">{`Description: ${elem.description}`}</p>

@@ -30,8 +30,8 @@ const forumSchema = ({
   isDeleted: { type: Boolean, default: false },
   date: { type: Date, default: new Date().getTime() },
   changedBy: { type: String, default: null },
-  linkTitle: String,
-  linkImage: String,
+  linkTitle: { type: String, default: null },
+  linkImage: { type: String, default: 'https://3kllhk1ibq34qk6sp3bhtox1-wpengine.netdna-ssl.com/wp-content/uploads/2017/12/44-incredible-404-error-pages@3x-1560x760.png' },
 });
 
 const tasksSchema = ({
